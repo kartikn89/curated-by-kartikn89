@@ -57,15 +57,23 @@ model = joblib.load(model_paths[model_name])
 # -------------------------------
 # Dataset upload
 # -------------------------------
-uploaded_file = st.file_uploader(
-    "Upload test dataset (CSV only, small size recommended)",
-    type=["csv"]
-)
-
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.subheader("Uploaded Dataset Preview")
-    st.dataframe(df.head())
+    df = pd.read_csv(
+        uploaded_file,
+        encoding="utf-8",
+        low_memory=False
+    )
+
+    # Sanitize string columns for Arrow compatibility
+    for col in df.select_dtypes(include=["object"]).columns:
+        df[col] = df[col].astype(str).str.slice(0, 200)
+
+    st.subheader("Uploaded Dataset Preview (First 50 rows)")
+    st.dataframe(df.head(50))
+
+    st.info(
+        "Dataset display is limited to 50 rows for Streamlit Cloud compatibility."
+    )
 
     # -------------------------------
     # Target handling
