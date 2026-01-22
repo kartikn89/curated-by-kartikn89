@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 from sklearn.metrics import (
     accuracy_score,
@@ -14,6 +15,9 @@ from sklearn.metrics import (
     confusion_matrix,
     matthews_corrcoef
 )
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "model")
 
 st.set_page_config(page_title="Adult Census Income Classifier", layout="wide")
 
@@ -40,12 +44,12 @@ model_name = st.selectbox(
 )
 
 model_paths = {
-    "Logistic Regression": "model/logistic_regression.pkl",
-    "Decision Tree": "model/decision_tree.pkl",
-    "KNN": "model/knn.pkl",
-    "Naive Bayes": "model/naive_bayes.pkl",
-    "Random Forest": "model/random_forest.pkl",
-    "XGBoost": "model/xgboost.pkl"
+    "Logistic Regression": os.path.join(MODEL_DIR, "logistic_regression.pkl"),
+    "Decision Tree": os.path.join(MODEL_DIR, "decision_tree.pkl"),
+    "KNN": os.path.join(MODEL_DIR, "knn.pkl"),
+    "Naive Bayes": os.path.join(MODEL_DIR, "naive_bayes.pkl"),
+    "Random Forest": os.path.join(MODEL_DIR, "random_forest.pkl"),
+    "XGBoost": os.path.join(MODEL_DIR, "xgboost.pkl")
 }
 
 model = joblib.load(model_paths[model_name])
