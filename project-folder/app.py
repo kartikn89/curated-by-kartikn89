@@ -17,7 +17,7 @@ from sklearn.metrics import (
 
 st.set_page_config(page_title="Adult Census Income Classifier", layout="wide")
 
-st.title("💼 Adult Census Income Classification")
+st.title("Adult Census Income Classification")
 
 st.markdown("""
 This app predicts whether an individual's income exceeds **$50K/year**
@@ -60,7 +60,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.subheader("📄 Uploaded Dataset Preview")
+    st.subheader("Uploaded Dataset Preview")
     st.dataframe(df.head())
 
     # -------------------------------
@@ -102,13 +102,13 @@ if uploaded_file is not None:
         "Value": [accuracy, precision, recall, f1, auc, mcc]
     })
 
-    st.subheader("📊 Evaluation Metrics")
+    st.subheader("Evaluation Metrics")
     st.table(metrics_df.round(4))
 
     # -------------------------------
     # Confusion Matrix
     # -------------------------------
-    st.subheader("🔍 Confusion Matrix")
+    st.subheader("Confusion Matrix")
 
     cm = confusion_matrix(y_true, y_pred)
 
