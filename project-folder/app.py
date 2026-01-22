@@ -57,6 +57,12 @@ model = joblib.load(model_paths[model_name])
 # -------------------------------
 # Dataset upload
 # -------------------------------
+
+uploaded_file = st.file_uploader(
+    "Upload test dataset (CSV only, small size recommended)",
+    type=["csv"]
+)
+
 if uploaded_file is not None:
     df = pd.read_csv(
         uploaded_file,
