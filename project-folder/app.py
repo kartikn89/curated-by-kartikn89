@@ -72,7 +72,7 @@ if uploaded_file is not None:
 
     # Sanitize string columns for Arrow compatibility
     for col in df.select_dtypes(include=["object"]).columns:
-        df[col] = df[col].astype(str).str.slice(0, 200)
+        df[col] = df[col].astype(str)
 
     st.subheader("Uploaded Dataset Preview (First 50 rows)")
     st.dataframe(df.head(50))
