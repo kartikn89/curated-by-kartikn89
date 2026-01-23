@@ -68,7 +68,8 @@ if uploaded_file is not None:
     df = pd.read_csv(
         uploaded_file,
         encoding="utf-8",
-        low_memory=False
+        low_memory=False,
+        dtype_backend="numpy_nullable"
     )
 
     # Sanitize string columns for Arrow compatibility
