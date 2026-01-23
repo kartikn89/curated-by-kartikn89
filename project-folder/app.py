@@ -121,6 +121,8 @@ if uploaded_file is not None:
         "Value": [accuracy, precision, recall, f1, auc, mcc]
     })
 
+    metrics_df["Metric"] = metrics_df["Metric"].astype(str)
+    
     st.subheader("Evaluation Metrics")
     st.table(metrics_df.round(4))
 
