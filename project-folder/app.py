@@ -7,9 +7,9 @@ import seaborn as sns
 import os
 import imghdr
 
-"""
-app hosted at: https://curated-by-kartikn89.streamlit.app/ 
-"""
+
+# app hosted at: https://curated-by-kartikn89.streamlit.app/ 
+
 
 from sklearn.metrics import (
     accuracy_score,
