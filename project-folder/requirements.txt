@@ -8,4 +8,3 @@ matplotlib
 seaborn
 altair<5
 standard-imghdr
-pyarrow<15.0.0
