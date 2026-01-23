@@ -69,15 +69,15 @@ if uploaded_file is not None:
         uploaded_file,
         encoding="utf-8",
         low_memory=False,
-        dtype_backend="numpy_nullable"
     )
 
     # Sanitize string columns for Arrow compatibility
     for col in df.select_dtypes(include=["object"]).columns:
-        df[col] = df[col].astype(str)
+        df[col] = df[col].astype(str).str[:1000]
 
     st.subheader("Uploaded Dataset Preview (First 50 rows)")
-    st.dataframe(df.head(50))
+    preview_df = pd.DataFrame(df.head(50).to_dict('records'))
+    st.dataframe(preview_df)
 
     st.info(
         "Dataset display is limited to 50 rows for Streamlit Cloud compatibility."
